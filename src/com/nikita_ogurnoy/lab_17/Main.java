@@ -1,0 +1,34 @@
+package com.nikita_ogurnoy.lab_17;
+
+import java.io.IOException;
+
+public class Main {
+    private static String srcFile;
+    private static String dstFile;
+    private static int buffer;
+
+    public static void main(String[] args) {
+	    for(String str: args){
+	        String[] key_val = str.split("=");
+
+	        if(key_val[0].compareTo("--srcfile") == 0)
+	            srcFile = key_val[1];
+
+            if(key_val[0].compareTo("--dstfile") == 0)
+                dstFile = key_val[1];
+
+            if(key_val[0].compareTo("--buffer") == 0)
+                buffer = Integer.parseInt(key_val[1]);
+
+        }
+
+        FileManager fm = new FileManager();
+
+        double time = fm.copy(srcFile, dstFile, buffer);
+
+        System.out.println("Время операции: " + time + " секунд.");
+
+
+   }
+}
+
